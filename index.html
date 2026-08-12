@@ -11,7 +11,7 @@
     <div class="ui-header">
       <div>
         <h1>ZERO Freerunning — Certificaten</h1>
-        <p>Vul de gegevens in voor de open dag en print of sla op als PDF.</p>
+        <p>Vul de naam in voor de open dag en print of sla op als PDF.</p>
       </div>
     </div>
 
@@ -27,8 +27,7 @@
         </div>
         <div class="field">
           <label>Handtekening</label>
-          <p class="field-note">Jouw handtekening staat vast op het certificaat.</p>
-          <input id="handtekening" name="handtekening" type="hidden" value="" />
+          <p class="field-note">Staat al op het certificaat (jouw handtekening).</p>
         </div>
       </div>
       <div class="actions">
@@ -36,7 +35,7 @@
         <button type="button" class="btn btn-secondary" id="btn-print">Print / PDF</button>
         <button type="button" class="btn btn-ghost" id="btn-reset">Reset</button>
       </div>
-      <p class="hint">Tip: kies bij printen “Opslaan als PDF”, papierformaat A4, liggend (landscape), marges “Geen”.</p>
+      <p class="hint">Tip: bij printen “Opslaan als PDF”, A4, liggend, marges “Geen”, achtergrondgraphics aan.</p>
     </form>
 
     <div class="preview-label">Voorbeeld / preview</div>
@@ -44,111 +43,13 @@
 
   <div class="stage">
     <article class="certificate" id="certificate" aria-label="Certificaat ZERO Freerunning">
-      <!-- Decorative geometric shapes top-left -->
-      <div class="geo-tl" aria-hidden="true">
-        <svg viewBox="0 0 320 320" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin slice">
-          <polygon points="0,0 210,0 0,170" fill="#C02026"/>
-          <polygon points="0,0 118,0 0,95" fill="#000000"/>
-          <polygon points="0,140 95,0 150,0 0,210" fill="#C02026" opacity="0.85"/>
-          <polygon points="160,0 230,0 0,250 0,190" fill="#000000" opacity="0.18"/>
-        </svg>
-      </div>
+      <img class="cert-bg" src="certificaat-bg.jpg" alt="" />
 
-      <!-- Bottom-right swooshes -->
-      <div class="swoosh-br" aria-hidden="true">
-        <svg viewBox="0 0 520 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMaxYMax meet">
-          <path d="M520,90 C420,110 360,180 300,250 C240,320 170,380 40,420 L520,420 Z" fill="#C02026"/>
-          <path d="M520,150 C430,165 380,220 330,275 C270,345 200,390 80,420 L520,420 Z" fill="#000000"/>
-          <path d="M520,210 C450,220 410,265 370,310 C320,365 250,400 140,420 L520,420 Z" fill="#C02026" opacity="0.9"/>
-          <path d="M520,270 C470,278 440,310 410,345 C375,385 320,405 220,420 L520,420 Z" fill="#1a1a1a"/>
-          <path d="M60,300 C180,250 280,220 400,180" fill="none" stroke="#D4AF37" stroke-width="2.5" opacity="0.55"/>
-        </svg>
-      </div>
-
-      <!-- Gold L corners -->
-      <div class="corner corner-tr" aria-hidden="true"></div>
-      <div class="corner corner-bl" aria-hidden="true"></div>
-      <div class="inner-frame" aria-hidden="true"></div>
-
-      <!-- Seal with ribbons -->
-      <div class="seal-wrap" aria-hidden="true">
-        <svg class="seal" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-          <!-- Jagged / scalloped gold border -->
-          <defs>
-            <radialGradient id="goldGrad" cx="40%" cy="35%" r="70%">
-              <stop offset="0%" stop-color="#E8C84A"/>
-              <stop offset="55%" stop-color="#D4AF37"/>
-              <stop offset="100%" stop-color="#B8941F"/>
-            </radialGradient>
-          </defs>
-          <!-- Outer jagged ring -->
-          <path fill="url(#goldGrad)" d="
-            M100,8
-            L112,22 L130,14 L136,32 L156,28 L156,48 L176,50 L168,68 L188,78 L174,94
-            L192,110 L174,122 L186,140 L166,146 L168,166 L148,164 L144,184 L124,172
-            L112,190 L100,176 L88,190 L76,172 L56,184 L52,164 L32,166 L34,146
-            L14,140 L26,122 L8,110 L26,94 L12,78 L32,68 L24,50 L44,48 L44,28
-            L64,32 L70,14 L88,22 Z"/>
-          <!-- Black center circle -->
-          <circle cx="100" cy="100" r="62" fill="#000000"/>
-          <!-- Thin gold inner ring -->
-          <circle cx="100" cy="100" r="62" fill="none" stroke="#D4AF37" stroke-width="2.5"/>
-          <!-- White square logo -->
-          <rect x="68" y="68" width="64" height="64" rx="3" fill="#FFFFFF"/>
-          <!-- Geometric freerunning-style lines -->
-          <g stroke="#000000" stroke-width="3.2" stroke-linecap="square" fill="none">
-            <path d="M78,118 L78,82 L100,82"/>
-            <path d="M90,118 L90,94 L112,94 L112,118"/>
-            <path d="M104,82 L122,82 L122,106"/>
-          </g>
-          <!-- Small red triangle accent -->
-          <polygon points="118,118 128,118 128,108" fill="#C02026"/>
-        </svg>
-        <svg class="seal-ribbons" viewBox="0 0 120 70" xmlns="http://www.w3.org/2000/svg">
-          <!-- Left ribbon -->
-          <path d="M48,0 L28,0 L18,62 L33,52 L48,62 Z" fill="#000000"/>
-          <path d="M48,0 L28,0 L18,62 L33,52 L48,62 Z" fill="none" stroke="#D4AF37" stroke-width="2"/>
-          <!-- Right ribbon -->
-          <path d="M72,0 L92,0 L102,62 L87,52 L72,62 Z" fill="#000000"/>
-          <path d="M72,0 L92,0 L102,62 L87,52 L72,62 Z" fill="none" stroke="#D4AF37" stroke-width="2"/>
-        </svg>
-      </div>
-
-      <div class="certificate-inner">
-        <h1 class="title-cert">Certificaat</h1>
-        <p class="title-sub">Bewijs van deelname</p>
-        <div class="divider" aria-hidden="true"></div>
-
-        <p class="congrats">
-          Gefeliciteerd: je hebt zojuist een activiteit van ZERO Freerunning voltooid.
-          Je hebt de basis nu onder de knie, je bent nu een echte freerunner.
-        </p>
-
-        <p class="presented-label">Met trots gepresenteerd aan</p>
-        <p class="participant-name" id="out-naam">________________</p>
-
-        <div class="fields-row">
-          <div class="field-col">
-            <span class="label">Datum</span>
-            <div class="line" id="out-datum">&nbsp;</div>
-          </div>
-          <div class="field-col">
-            <span class="label">Deelnemer</span>
-            <div class="line" id="out-deelnemer">&nbsp;</div>
-          </div>
-          <div class="field-col">
-            <span class="label">Handtekening</span>
-            <div class="line signature" id="out-handtekening"><img class="signature-img" src="handtekening.png" alt="Handtekening" /></div>
-          </div>
-        </div>
-
-        <p class="footer-note">
-          Benieuwd naar wat ZERO Freerunning voor jou kan betekenen?
-          Check dan <a href="https://zero-freerunning.nl" target="_blank" rel="noopener">zero-freerunning.nl</a>
-        </p>
-      </div>
-
-      <div class="brand-mark">ZERO Freerunning</div>
+      <!-- Overlays op het echte ontwerp -->
+      <div class="overlay overlay-datum" id="out-datum"></div>
+      <div class="overlay overlay-naam" id="out-naam"></div>
+      <!-- Vervangt de oude handtekening op het ontwerp door jouw upload -->
+      <img class="overlay-handtekening" id="out-handtekening" src="handtekening.png" alt="" />
     </article>
   </div>
 
@@ -157,12 +58,8 @@
       const form = document.getElementById('cert-form');
       const naamInput = document.getElementById('naam');
       const datumInput = document.getElementById('datum');
-      const handInput = document.getElementById('handtekening');
-
       const outNaam = document.getElementById('out-naam');
       const outDatum = document.getElementById('out-datum');
-      const outDeelnemer = document.getElementById('out-deelnemer');
-      const outHand = document.getElementById('out-handtekening');
 
       const NL_MONTHS = [
         'januari', 'februari', 'maart', 'april', 'mei', 'juni',
@@ -189,27 +86,17 @@
       }
 
       function applyCertificate() {
-        const naam = (naamInput.value || '').trim() || '________________';
-        const datumNl = formatDutchDate(datumInput.value);
-        const hand = (handInput.value || '').trim();
-
+        const naam = (naamInput.value || '').trim();
         outNaam.textContent = naam;
-        outDatum.textContent = datumNl || '\u00A0';
-        outDeelnemer.textContent = naam === '________________' ? '\u00A0' : naam;
-        /* signature image stays */
+        outDatum.textContent = formatDutchDate(datumInput.value);
       }
-
-      // Default today (browser local). Fallback ISO if needed.
-      datumInput.value = todayISO();
 
       function syncUrl() {
         const params = new URLSearchParams();
         const naam = (naamInput.value || '').trim();
         const datum = (datumInput.value || '').trim();
-        const hand = (handInput.value || '').trim();
         if (naam) params.set('naam', naam);
         if (datum) params.set('datum', datum);
-        if (hand) params.set('handtekening', hand);
         const qs = params.toString();
         const next = qs ? (window.location.pathname + '?' + qs) : window.location.pathname;
         window.history.replaceState(null, '', next);
@@ -220,10 +107,9 @@
         syncUrl();
       }
 
-      // Live preview + deelbare link
+      datumInput.value = todayISO();
       naamInput.addEventListener('input', refresh);
       datumInput.addEventListener('input', refresh);
-      handInput.addEventListener('input', refresh);
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
@@ -238,18 +124,14 @@
 
       document.getElementById('btn-reset').addEventListener('click', function () {
         naamInput.value = '';
-        handInput.value = '';
         datumInput.value = todayISO();
         refresh();
         naamInput.focus();
       });
 
-      // Query params: ?naam=...&datum=YYYY-MM-DD&handtekening=...
       const params = new URLSearchParams(window.location.search);
       if (params.has('naam')) naamInput.value = params.get('naam');
       if (params.has('datum')) datumInput.value = params.get('datum');
-      if (params.has('handtekening')) handInput.value = params.get('handtekening');
-
       refresh();
     })();
   </script>
