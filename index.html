@@ -26,8 +26,9 @@
           <input id="datum" name="datum" type="date" required />
         </div>
         <div class="field">
-          <label for="handtekening">Handtekening (optioneel)</label>
-          <input id="handtekening" name="handtekening" type="text" placeholder="Laat leeg voor natte handtekening" />
+          <label>Handtekening</label>
+          <p class="field-note">Jouw handtekening staat vast op het certificaat.</p>
+          <input id="handtekening" name="handtekening" type="hidden" value="" />
         </div>
       </div>
       <div class="actions">
@@ -137,7 +138,7 @@
           </div>
           <div class="field-col">
             <span class="label">Handtekening</span>
-            <div class="line signature" id="out-handtekening">&nbsp;</div>
+            <div class="line signature" id="out-handtekening"><img class="signature-img" src="handtekening.png" alt="Handtekening" /></div>
           </div>
         </div>
 
@@ -195,7 +196,7 @@
         outNaam.textContent = naam;
         outDatum.textContent = datumNl || '\u00A0';
         outDeelnemer.textContent = naam === '________________' ? '\u00A0' : naam;
-        outHand.textContent = hand || '\u00A0';
+        /* signature image stays */
       }
 
       // Default today (browser local). Fallback ISO if needed.
