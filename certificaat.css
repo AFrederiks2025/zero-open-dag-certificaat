@@ -305,33 +305,32 @@ html, body {
 .field-mask {
   position: absolute;
   z-index: 2;
-  left: 14%;
-  width: 72%;
-  top: 62%;
-  height: 18%;
+  left: 18%;
+  width: 64%;
+  top: 64%;
+  height: 14%;
   background: #ffffff;
-  box-shadow: 0 0 18px 12px #ffffff;
+  border-radius: 4px;
   pointer-events: none;
 }
 
 .content-panel {
   position: absolute;
   z-index: 3;
-  left: 16%;
-  width: 68%;
-  top: 27%;
-  height: 52%;
+  left: 18%;
+  width: 64%;
+  top: 28%;
+  height: 50%;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow:
-    0 0 0 10px #ffffff,
-    0 0 24px 18px #ffffff;
+  border-radius: 6px;
+  /* Geen witte glow over gouden randen / seal / swoosh */
+  box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  padding: 2% 3.2% 1.5%;
+  padding: 2% 3% 1.4%;
   overflow: hidden;
 }
 
@@ -450,31 +449,30 @@ html, body {
   font-style: normal;
 }
 
-/* CTA + QR bottom band */
+/* Bottom CTA band */
 .cta-block {
   position: absolute;
   z-index: 4;
-  left: 20%;
-  right: 3.8%;
-  bottom: 3.2%;
-  height: 19%;
+  left: 26%;
+  right: 10%;
+  bottom: 4%;
+  height: auto;
+  min-height: 11%;
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 2%;
+  justify-content: center;
+  gap: 0;
   background: #ffffff;
-  border-radius: 8px;
-  box-shadow:
-    0 0 0 8px #ffffff,
-    0 0 20px 14px #ffffff;
-  padding: 0.9% 1.5%;
+  border-radius: 6px;
+  box-shadow: none;
+  padding: 1.1% 1.8%;
 }
 
 .cta-copy {
   flex: 1;
   min-width: 0;
-  text-align: left;
-  padding-right: 1%;
+  text-align: center;
+  padding-right: 0;
 }
 
 .cta-title {
@@ -499,33 +497,8 @@ html, body {
   outline: none;
 }
 
-.cta-scan-hint {
-  margin: 0.35em 0 0;
-  font-size: clamp(7px, 1.1cqw, 11px);
-  font-weight: 600;
-  color: var(--muted);
-}
 
-.qr-pad {
-  flex: 0 0 auto;
-  width: min(118px, max(40px, 11.5cqw));
-  height: min(118px, max(40px, 11.5cqw));
-  background: #fff;
-  border: 2px solid #111;
-  border-radius: 6px;
-  padding: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-}
 
-#qr-canvas {
-  width: 100% !important;
-  height: 100% !important;
-  display: block;
-  image-rendering: pixelated;
-}
 
 /* Socials under gold L */
 .social-block {
@@ -589,12 +562,15 @@ html, body {
 
 @container cert (max-width: 520px) {
   .content-panel {
+    left: 16%;
+    width: 68%;
     top: 22%;
-    height: 60%;
+    height: 58%;
     padding: 1.2% 2.2% 0.8%;
     justify-content: flex-start;
     gap: 0.12em;
     overflow: visible;
+    box-shadow: none;
   }
 
   .cert-intro { margin: 0; }
@@ -612,9 +588,11 @@ html, body {
 
   .cta-block {
     left: 22%;
-    width: 72%;
-    bottom: 3.2%;
+    right: 8%;
+    width: auto;
+    bottom: 3.5%;
     padding: 1.1% 1.4%;
+    box-shadow: none;
   }
 
   .social-block {
@@ -709,7 +687,6 @@ html, body {
 
   .content-panel,
   .cta-block,
-  .qr-pad,
   .mission-badge {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;

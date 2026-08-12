@@ -126,7 +126,7 @@
         </blockquote>
       </div>
 
-      <!-- Bottom CTA + QR -->
+      <!-- Bottom CTA -->
       <div class="cta-block">
         <div class="cta-copy">
           <p class="cta-title">Jouw volgende missie: 30 dagen gratis meetrainen</p>
@@ -135,10 +135,6 @@
              target="_blank" rel="noopener noreferrer">
             Start nu op zero-freerunning.nl/starten →
           </a>
-          <p class="cta-scan-hint">Scan samen met je ouder/verzorger</p>
-        </div>
-        <div class="qr-pad" aria-hidden="false">
-          <canvas id="qr-canvas" width="110" height="110" aria-label="QR-code naar zero-freerunning.nl/starten"></canvas>
         </div>
       </div>
 
@@ -163,7 +159,6 @@
     </article>
   </div>
 
-  <script src="vendor/qrcode.min.js"></script>
 
   <!-- Offscreen canvas for share card -->
   <canvas id="share-canvas" class="share-canvas no-print" width="1080" height="1920" aria-hidden="true"></canvas>
@@ -200,7 +195,6 @@
       var outCoach = document.getElementById('out-coach');
       var outMsg = document.getElementById('out-msg');
       var outCoachBy = document.getElementById('out-coach-by');
-      var qrCanvas = document.getElementById('qr-canvas');
       var shareCanvas = document.getElementById('share-canvas');
 
       var NL_MONTHS = [
@@ -332,19 +326,6 @@
           badge.appendChild(icon);
           badge.appendChild(label);
           outMissions.appendChild(badge);
-        });
-      }
-
-      function renderQR() {
-        if (typeof QRCode === 'undefined' || !QRCode.toCanvas) return;
-        // Size ~100–110 CSS px; high contrast, quiet zone via margin
-        QRCode.toCanvas(qrCanvas, START_URL, {
-          errorCorrectionLevel: 'M',
-          margin: 2,
-          width: 110,
-          color: { dark: '#111111', light: '#ffffff' }
-        }, function (err) {
-          if (err) console.error(err);
         });
       }
 
@@ -612,14 +593,12 @@
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         refresh();
-        renderQR();
-        document.getElementById('certificate').scrollIntoView({ behavior: 'smooth', block: 'center' });
+                document.getElementById('certificate').scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
 
       document.getElementById('btn-print').addEventListener('click', function () {
         refresh();
-        renderQR();
-        setTimeout(function () { window.print(); }, 80);
+                setTimeout(function () { window.print(); }, 80);
       });
 
       document.getElementById('btn-sharecard').addEventListener('click', function () {
@@ -633,8 +612,7 @@
         msgInput.value = '';
         missionInputs.forEach(function (el) { el.checked = false; el.disabled = false; });
         refresh();
-        renderQR();
-        naamInput.focus();
+                naamInput.focus();
       });
 
       window.addEventListener('resize', function () {
@@ -644,17 +622,14 @@
       // Init
       function boot() {
         refresh();
-        renderQR();
-      }
+              }
       if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', boot);
       } else {
-        // QR lib is deferred — wait a tick
         setTimeout(boot, 0);
       }
       window.addEventListener('load', function () {
-        renderQR();
-        fitNameText();
+                fitNameText();
       });
     })();
   </script>
