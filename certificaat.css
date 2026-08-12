@@ -162,20 +162,22 @@ html, body {
   text-overflow: ellipsis;
 }
 
-/* Posities afgestemd op het originele ontwerp (A4 landscape) */
+/* Posities gemeten op de echte onderlijnen van het ontwerp */
 .overlay-datum {
-  left: 14.5%;
-  width: 18%;
-  top: 72.2%;
-  font-size: clamp(10px, 1.35vw, 15px);
+  left: 24.2%;
+  width: 14.8%;
+  top: 69.6%;
+  font-size: clamp(10px, 1.25vw, 14px);
+  text-align: center;
 }
 
 .overlay-naam {
-  left: 36.5%;
-  width: 27%;
-  top: 72.2%;
-  font-size: clamp(11px, 1.5vw, 16px);
+  left: 41.1%;
+  width: 17.9%;
+  top: 69.6%;
+  font-size: clamp(11px, 1.35vw, 15px);
   font-weight: 700;
+  text-align: center;
 }
 
 
