@@ -414,13 +414,20 @@ html, body {
   overflow: visible;
 }
 
+.field-col:has(.signature) {
+  position: relative;
+  z-index: 2;
+}
+
 .signature-img {
   display: block;
-  width: min(100%, 220px);
+  width: min(100%, 230px);
   height: auto;
-  max-height: 78px;
+  max-height: 86px;
   object-fit: contain;
-  margin: 0 auto -8px;
+  margin: 0 auto -10px;
+  padding: 2px 10px 0;
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 0%, rgba(255,255,255,0.92) 35%, #fff 100%);
   pointer-events: none;
   user-select: none;
 }
