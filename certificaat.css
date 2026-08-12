@@ -211,45 +211,88 @@ html, body {
   }
 }
 
-
-/* Klikbare CTA over de website-regel onderaan */
-.overlay-link {
+/* Starten-link alleen over de 2e footerregel (zero-freerunning.nl) */
+.overlay-starten {
   position: absolute;
   z-index: 5;
-  left: 28%;
-  width: 44%;
-  top: 84.5%;
-  height: 7.5%;
+  left: 31%;
+  width: 38%;
+  top: 87.45%;
+  height: 2.5%;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  border-radius: 8px;
-  /* Dek de oude website-regel licht af zodat de CTA leesbaar is */
-  background: rgba(255, 255, 255, 0.92);
-}
-
-.overlay-link:hover,
-.overlay-link:focus-visible {
-  background: #fff;
-  outline: 2px solid #C02026;
-  outline-offset: 2px;
-}
-
-.overlay-link-label {
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: clamp(10px, 1.2vw, 13px);
+  font-size: clamp(9px, 1.05vw, 12px);
   font-weight: 700;
   color: #C02026;
-  letter-spacing: 0.01em;
+  background: #fff;
+  box-shadow: 0 0 0 4px #fff;
+  border-radius: 3px;
   white-space: nowrap;
 }
 
+.overlay-starten:hover,
+.overlay-starten:focus-visible {
+  text-decoration: underline;
+  outline: 2px solid #C02026;
+  outline-offset: 1px;
+}
+
+/* Socials linksonder, boven de gouden hoek */
+.social-block {
+  position: absolute;
+  z-index: 5;
+  left: 5.8%;
+  bottom: 7.2%;
+  width: 22%;
+  text-align: left;
+}
+
+.social-caption {
+  margin: 0 0 0.35em;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(7px, 0.85vw, 10px);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #666;
+  white-space: nowrap;
+}
+
+.social-icons {
+  display: flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.social-icon {
+  width: clamp(16px, 2.1vw, 22px);
+  height: clamp(16px, 2.1vw, 22px);
+  color: #C02026;
+  display: inline-flex;
+  text-decoration: none;
+  transition: color .15s ease, transform .15s ease;
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.social-icon:hover,
+.social-icon:focus-visible {
+  color: #8E161B;
+  transform: translateY(-1px);
+  outline: none;
+}
+
 @media print {
-  .overlay-link {
+  .overlay-starten {
     background: #fff;
-  }
-  .overlay-link-label {
     color: #C02026;
   }
+  .social-caption { color: #555; }
+  .social-icon { color: #C02026; }
 }
