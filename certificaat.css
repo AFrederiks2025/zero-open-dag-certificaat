@@ -210,3 +210,46 @@ html, body {
     aspect-ratio: auto;
   }
 }
+
+
+/* Klikbare CTA over de website-regel onderaan */
+.overlay-link {
+  position: absolute;
+  z-index: 5;
+  left: 28%;
+  width: 44%;
+  top: 84.5%;
+  height: 7.5%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border-radius: 8px;
+  /* Dek de oude website-regel licht af zodat de CTA leesbaar is */
+  background: rgba(255, 255, 255, 0.92);
+}
+
+.overlay-link:hover,
+.overlay-link:focus-visible {
+  background: #fff;
+  outline: 2px solid #C02026;
+  outline-offset: 2px;
+}
+
+.overlay-link-label {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(10px, 1.2vw, 13px);
+  font-weight: 700;
+  color: #C02026;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+@media print {
+  .overlay-link {
+    background: #fff;
+  }
+  .overlay-link-label {
+    color: #C02026;
+  }
+}
