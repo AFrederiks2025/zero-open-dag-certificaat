@@ -178,20 +178,6 @@ html, body {
   font-weight: 700;
 }
 
-.overlay-handtekening {
-  position: absolute;
-  z-index: 2;
-  left: 66.5%;
-  width: 18.5%;
-  top: 66.8%;
-  height: auto;
-  max-height: 9.5%;
-  object-fit: contain;
-  object-position: center bottom;
-  /* Dek de oude handtekening op het ontwerp af */
-  background: #fff;
-  padding: 0 4px;
-}
 
 @media print {
   @page {
