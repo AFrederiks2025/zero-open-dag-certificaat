@@ -292,6 +292,47 @@ html, body {
   outline: none;
 }
 
+/* Promo-links: Tutorials + activiteiten */
+.promo-links {
+  position: absolute;
+  z-index: 5;
+  left: 28%;
+  width: 44%;
+  top: 90.6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.15em 0.55em;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: clamp(7.5px, 0.9vw, 10.5px);
+  font-weight: 700;
+  letter-spacing: 0.01em;
+  background: #fff;
+  box-shadow: 0 0 0 5px #fff;
+  border-radius: 3px;
+  padding: 0.15em 0.4em;
+  text-align: center;
+}
+
+.promo-links a {
+  color: #C02026;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.promo-links a:hover,
+.promo-links a:focus-visible {
+  text-decoration: underline;
+  outline: none;
+}
+
+.promo-sep {
+  color: #bbb;
+  font-weight: 500;
+  user-select: none;
+}
+
 @media print {
   .overlay-starten {
     background: #fff;
@@ -299,4 +340,6 @@ html, body {
   }
   .social-caption { color: #555; }
   .social-icon { color: #C02026; }
+  .promo-links { background: #fff; }
+  .promo-links a { color: #C02026; }
 }
