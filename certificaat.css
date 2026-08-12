@@ -1,0 +1,492 @@
+/* ZERO Freerunning — Open Day Certificaat */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Montserrat:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --red: #C02026;
+  --gold: #D4AF37;
+  --gold-dark: #B8941F;
+  --gold-light: #E8C84A;
+  --black: #000000;
+  --white: #FFFFFF;
+  --ink: #1a1a1a;
+  --muted: #444444;
+  --panel: #f6f6f6;
+  --line: #e0e0e0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  background: #e8e8e8;
+  color: var(--ink);
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+/* ========== CONTROLS UI ========== */
+.no-print {
+  max-width: 920px;
+  margin: 0 auto;
+  padding: 28px 20px 12px;
+}
+
+.ui-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.ui-header h1 {
+  margin: 0;
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  color: var(--red);
+}
+
+.ui-header p {
+  margin: 4px 0 0;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.form-card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+
+@media (max-width: 800px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.field label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  border: 1.5px solid #d5d5d5;
+  border-radius: 10px;
+  padding: 11px 12px;
+  font: 500 0.95rem/1.2 'Montserrat', sans-serif;
+  color: var(--ink);
+  background: #fafafa;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.field input:focus {
+  border-color: var(--red);
+  box-shadow: 0 0 0 3px rgba(192, 32, 38, 0.12);
+  background: var(--white);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 16px;
+}
+
+.btn {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 12px 20px;
+  font: 700 0.9rem/1 'Montserrat', sans-serif;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn-primary {
+  background: var(--red);
+  color: var(--white);
+  box-shadow: 0 6px 16px rgba(192, 32, 38, 0.28);
+}
+
+.btn-primary:hover {
+  background: #a71b21;
+}
+
+.btn-secondary {
+  background: var(--black);
+  color: var(--white);
+}
+
+.btn-secondary:hover {
+  background: #222;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1.5px solid #cfcfcf;
+}
+
+.hint {
+  margin: 12px 0 0;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.preview-label {
+  margin: 22px 0 10px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.stage {
+  display: flex;
+  justify-content: center;
+  padding: 0 12px 40px;
+}
+
+/* ========== CERTIFICATE ========== */
+.certificate {
+  --cert-w: 297mm;
+  --cert-h: 210mm;
+  width: min(100%, 980px);
+  aspect-ratio: 297 / 210;
+  background: var(--white);
+  color: var(--black);
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.18);
+  border: 1px solid #ddd;
+}
+
+.certificate-inner {
+  position: absolute;
+  inset: 0;
+  padding: 7% 9% 6%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Gold L-frames */
+.corner {
+  position: absolute;
+  width: 14%;
+  height: 22%;
+  border: 7px solid var(--gold);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.corner-tr {
+  top: 3.2%;
+  right: 3.2%;
+  border-left: none;
+  border-bottom: none;
+}
+
+.corner-bl {
+  bottom: 3.2%;
+  left: 3.2%;
+  border-right: none;
+  border-top: none;
+}
+
+/* Soft inner gold frame */
+.inner-frame {
+  position: absolute;
+  inset: 5.5%;
+  border: 1.5px solid rgba(212, 175, 55, 0.45);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Top-left geometric triangles */
+.geo-tl {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 28%;
+  height: 42%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.geo-tl svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Bottom-right swooshes */
+.swoosh-br {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 48%;
+  height: 48%;
+  z-index: 1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.swoosh-br svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Seal */
+.seal-wrap {
+  position: absolute;
+  top: 3.5%;
+  left: 3.8%;
+  width: 15.5%;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.seal {
+  width: 100%;
+  aspect-ratio: 1;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25));
+}
+
+.seal-ribbons {
+  width: 72%;
+  margin-top: -6%;
+  display: block;
+}
+
+/* Typography */
+.title-cert {
+  margin: 0;
+  margin-top: 2.2%;
+  font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  font-weight: 900;
+  font-size: clamp(28px, 5.6vw, 58px);
+  letter-spacing: 0.14em;
+  color: var(--red);
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.title-sub {
+  margin: 0.7% 0 0;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: clamp(11px, 1.55vw, 16px);
+  letter-spacing: 0.28em;
+  color: var(--black);
+  text-transform: uppercase;
+}
+
+.divider {
+  width: min(42%, 280px);
+  height: 2px;
+  margin: 2.2% 0 2%;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  position: relative;
+}
+
+.divider::before,
+.divider::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 7px;
+  height: 7px;
+  background: var(--gold);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.divider::before { left: 18%; }
+.divider::after { right: 18%; }
+
+.congrats {
+  max-width: 72%;
+  margin: 0;
+  font-size: clamp(10px, 1.25vw, 13.5px);
+  line-height: 1.55;
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.presented-label {
+  margin: 2.6% 0 0.8%;
+  font-size: clamp(9px, 1.05vw, 11.5px);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--black);
+}
+
+.participant-name {
+  margin: 0;
+  min-height: 1.15em;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 700;
+  font-size: clamp(22px, 3.4vw, 36px);
+  color: var(--black);
+  letter-spacing: 0.02em;
+  border-bottom: 2px solid var(--gold);
+  padding: 0 18px 4px;
+  display: inline-block;
+  min-width: 42%;
+}
+
+.fields-row {
+  width: min(86%, 720px);
+  margin-top: auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 4.5%;
+  padding-top: 3%;
+}
+
+.field-col {
+  text-align: center;
+}
+
+.field-col .label {
+  display: block;
+  font-size: clamp(8px, 0.95vw, 10.5px);
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--red);
+  margin-bottom: 8%;
+}
+
+.field-col .line {
+  border-bottom: 1.5px solid var(--black);
+  min-height: 1.6em;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 3px;
+  font-size: clamp(10px, 1.2vw, 13px);
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.field-col .line.signature {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  color: #222;
+  letter-spacing: 0.02em;
+}
+
+.footer-note {
+  margin: 2.4% 0 0;
+  max-width: 78%;
+  font-size: clamp(8px, 0.95vw, 10.5px);
+  font-weight: 500;
+  color: var(--muted);
+  letter-spacing: 0.01em;
+}
+
+.footer-note a {
+  color: var(--red);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.brand-mark {
+  position: absolute;
+  bottom: 3.6%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  font-size: clamp(8px, 0.85vw, 9.5px);
+  font-weight: 800;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.28);
+  pointer-events: none;
+}
+
+/* ========== PRINT ========== */
+@page {
+  size: A4 landscape;
+  margin: 0;
+}
+
+@media print {
+  html, body {
+    background: white !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100%;
+    height: 100%;
+  }
+
+  .no-print {
+    display: none !important;
+  }
+
+  .stage {
+    padding: 0 !important;
+    margin: 0 !important;
+    display: block !important;
+  }
+
+  .certificate {
+    width: 297mm !important;
+    height: 210mm !important;
+    max-width: none !important;
+    aspect-ratio: auto !important;
+    box-shadow: none !important;
+    border: none !important;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .title-cert { font-size: 52px; }
+  .title-sub { font-size: 15px; }
+  .congrats { font-size: 12.5px; }
+  .presented-label { font-size: 11px; }
+  .participant-name { font-size: 32px; }
+  .field-col .label { font-size: 10px; }
+  .field-col .line { font-size: 12.5px; }
+  .footer-note { font-size: 10px; }
+}
