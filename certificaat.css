@@ -278,6 +278,8 @@ html, body {
   box-shadow: 0 18px 42px rgba(0, 0, 0, 0.14);
   overflow: hidden;
   isolation: isolate;
+  container-type: inline-size;
+  container-name: cert;
 }
 
 .cert-bg {
@@ -335,7 +337,7 @@ html, body {
 
 .cert-intro {
   margin: 0;
-  font-size: clamp(10px, 1.35vw, 15px);
+  font-size: clamp(9px, 1.55cqw, 15px);
   font-weight: 600;
   color: #333;
   letter-spacing: 0.01em;
@@ -344,13 +346,15 @@ html, body {
 .cert-name {
   margin: 0.35em 0 0.25em;
   width: 100%;
-  font-size: clamp(22px, 4.2vw, 52px);
+  font-size: clamp(16px, 5.1cqw, 52px);
   font-weight: 900;
   color: var(--ink);
   letter-spacing: -0.03em;
   line-height: 1.05;
-  max-height: 2.2em;
+  max-height: 2.4em;
   overflow: hidden;
+  flex-shrink: 0;
+  min-height: 1.15em;
 }
 
 .cert-name.is-placeholder {
@@ -361,7 +365,7 @@ html, body {
 .cert-reason {
   margin: 0.15em 0 0;
   max-width: 34em;
-  font-size: clamp(9px, 1.2vw, 13.5px);
+  font-size: clamp(8px, 1.4cqw, 13.5px);
   font-weight: 600;
   color: #333;
   line-height: 1.35;
@@ -392,8 +396,8 @@ html, body {
 }
 
 .mission-badge-icon {
-  width: clamp(14px, 1.6vw, 20px);
-  height: clamp(14px, 1.6vw, 20px);
+  width: clamp(11px, 1.8cqw, 20px);
+  height: clamp(11px, 1.8cqw, 20px);
   display: inline-flex;
   flex-shrink: 0;
 }
@@ -405,7 +409,7 @@ html, body {
 }
 
 .mission-badge-label {
-  font-size: clamp(8px, 1.05vw, 12px);
+  font-size: clamp(7px, 1.2cqw, 12px);
   font-weight: 800;
   letter-spacing: 0.01em;
   white-space: nowrap;
@@ -413,7 +417,7 @@ html, body {
 
 .cert-date {
   margin: 0.7em 0 0;
-  font-size: clamp(9px, 1.1vw, 12.5px);
+  font-size: clamp(8px, 1.25cqw, 12.5px);
   font-weight: 700;
   color: var(--muted);
   letter-spacing: 0.04em;
@@ -431,7 +435,7 @@ html, body {
 
 .coach-message {
   margin: 0;
-  font-size: clamp(9px, 1.15vw, 13px);
+  font-size: clamp(8px, 1.3cqw, 13px);
   font-weight: 600;
   font-style: italic;
   color: #222;
@@ -440,7 +444,7 @@ html, body {
 
 .coach-by {
   margin-top: 0.25em;
-  font-size: clamp(8px, 1vw, 11.5px);
+  font-size: clamp(7px, 1.15cqw, 11.5px);
   font-weight: 800;
   color: var(--red);
   font-style: normal;
@@ -475,7 +479,7 @@ html, body {
 
 .cta-title {
   margin: 0 0 0.35em;
-  font-size: clamp(10px, 1.35vw, 15px);
+  font-size: clamp(9px, 1.55cqw, 15px);
   font-weight: 800;
   color: var(--ink);
   line-height: 1.25;
@@ -483,7 +487,7 @@ html, body {
 
 .cta-link {
   display: inline-block;
-  font-size: clamp(9px, 1.15vw, 13px);
+  font-size: clamp(8px, 1.3cqw, 13px);
   font-weight: 800;
   color: var(--red);
   text-decoration: none;
@@ -497,15 +501,15 @@ html, body {
 
 .cta-scan-hint {
   margin: 0.35em 0 0;
-  font-size: clamp(8px, 0.95vw, 11px);
+  font-size: clamp(7px, 1.1cqw, 11px);
   font-weight: 600;
   color: var(--muted);
 }
 
 .qr-pad {
   flex: 0 0 auto;
-  width: clamp(90px, 11.5vw, 118px);
-  height: clamp(90px, 11.5vw, 118px);
+  width: min(118px, max(40px, 11.5cqw));
+  height: min(118px, max(40px, 11.5cqw));
   background: #fff;
   border: 2px solid #111;
   border-radius: 6px;
@@ -536,7 +540,7 @@ html, body {
 
 .social-caption {
   margin: 0 0 0.3em;
-  font-size: clamp(6px, 0.7vw, 8.5px);
+  font-size: clamp(5px, 0.85cqw, 8.5px);
   font-weight: 700;
   color: #666;
   line-height: 1.15;
@@ -550,8 +554,8 @@ html, body {
 }
 
 .social-icon {
-  width: clamp(13px, 1.55vw, 18px);
-  height: clamp(13px, 1.55vw, 18px);
+  width: clamp(10px, 1.7cqw, 18px);
+  height: clamp(10px, 1.7cqw, 18px);
   color: var(--red);
   display: inline-flex;
   text-decoration: none;
@@ -579,6 +583,92 @@ html, body {
   height: 1920px;
   pointer-events: none;
   opacity: 0;
+}
+
+
+
+@container cert (max-width: 520px) {
+  .content-panel {
+    top: 22%;
+    height: 60%;
+    padding: 1.2% 2.2% 0.8%;
+    justify-content: flex-start;
+    gap: 0.12em;
+    overflow: visible;
+  }
+
+  .cert-intro { margin: 0; }
+  .cert-reason { margin-top: 0.08em; }
+  .missions-row {
+    margin-top: 0.4em;
+    gap: 0.28em;
+    flex-shrink: 0;
+  }
+  .mission-badge {
+    padding: 0.18em 0.45em;
+  }
+  .cert-meta { margin-top: 0.35em; flex-shrink: 0; }
+  .coach-quote { margin-top: 0.25em; flex-shrink: 0; }
+
+  .cta-block {
+    left: 22%;
+    width: 72%;
+    bottom: 3.2%;
+    padding: 1.1% 1.4%;
+  }
+
+  .social-block {
+    width: 20%;
+    bottom: 2.4%;
+  }
+}
+
+/* Mobile preview: keep certificate readable and fully in view */
+@media (max-width: 700px) {
+  .no-print {
+    padding: 18px 14px 8px;
+  }
+
+  .form-card {
+    padding: 16px;
+    border-radius: 14px;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .actions .btn {
+    width: 100%;
+  }
+
+  .preview-label {
+    margin: 18px 0 10px;
+    padding: 0 14px;
+  }
+
+  .stage {
+    padding: 0 10px 36px;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .certificate {
+    width: 100%;
+    max-width: 100%;
+    /* slightly taller hit area for taps on links/QR */
+    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  }
+
+  .social-block {
+    width: 18%;
+    bottom: 2.6%;
+  }
+
+  .cta-block {
+    gap: 0.55em;
+    padding: 1.4% 1.8%;
+  }
 }
 
 /* ===== Print ===== */
