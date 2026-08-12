@@ -292,46 +292,25 @@ html, body {
   z-index: 0;
 }
 
-.energy-overlay {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}
 
-/* Extra white veil over old DATUM/DEELNEMER/HANDTEKENING print */
-.field-mask {
-  position: absolute;
-  z-index: 2;
-  left: 18%;
-  width: 64%;
-  top: 64%;
-  height: 14%;
-  background: #ffffff;
-  border-radius: 4px;
-  pointer-events: none;
-}
 
 .content-panel {
   position: absolute;
   z-index: 3;
-  left: 18%;
-  width: 64%;
-  top: 28%;
-  height: 50%;
-  background: #ffffff;
-  border-radius: 6px;
-  /* Geen witte glow over gouden randen / seal / swoosh */
+  left: 20%;
+  width: 60%;
+  top: 31%;
+  height: 46%;
+  background: transparent;
+  border-radius: 0;
   box-shadow: none;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
   text-align: center;
-  padding: 2% 3% 1.4%;
-  overflow: hidden;
+  padding: 1% 2% 0.5%;
+  overflow: visible;
 }
 
 .cert-intro {
@@ -449,23 +428,24 @@ html, body {
   font-style: normal;
 }
 
+
 /* Bottom CTA band */
 .cta-block {
   position: absolute;
   z-index: 4;
-  left: 26%;
-  right: 10%;
-  bottom: 4%;
+  left: 28%;
+  right: 24%;
+  bottom: 5%;
   height: auto;
-  min-height: 11%;
+  min-height: 0;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0;
-  background: #ffffff;
-  border-radius: 6px;
+  background: transparent;
+  border-radius: 0;
   box-shadow: none;
-  padding: 1.1% 1.8%;
+  padding: 0;
 }
 
 .cta-copy {
@@ -570,6 +550,7 @@ html, body {
     justify-content: flex-start;
     gap: 0.12em;
     overflow: visible;
+    background: transparent;
     box-shadow: none;
   }
 
@@ -587,8 +568,8 @@ html, body {
   .coach-quote { margin-top: 0.25em; flex-shrink: 0; }
 
   .cta-block {
-    left: 22%;
-    right: 8%;
+    left: 24%;
+    right: 18%;
     width: auto;
     bottom: 3.5%;
     padding: 1.1% 1.4%;
