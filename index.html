@@ -4,38 +4,83 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>ZERO Freerunning — Certificaatgenerator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="certificaat.css" />
 </head>
 <body>
   <div class="no-print">
-    <div class="ui-header">
+    <header class="ui-header">
       <div>
-        <h1>ZERO Freerunning — Certificaten</h1>
-        <p>Vul de naam in voor de open dag en print of sla op als PDF.</p>
+        <h1>ZERO Freerunning — Open Dag Certificaat</h1>
+        <p>Maak een persoonlijk certificaat en deelkaart voor de ZERO Open Dag.</p>
       </div>
-    </div>
+    </header>
 
     <form class="form-card" id="cert-form" autocomplete="off">
-      <div class="form-grid">
+      <div class="form-grid form-grid-top">
         <div class="field">
           <label for="naam">Naam deelnemer</label>
-          <input id="naam" name="naam" type="text" placeholder="bijv. Emma de Vries" required />
+          <input id="naam" name="naam" type="text" placeholder="bijv. Emma de Vries" required maxlength="80" />
         </div>
         <div class="field">
           <label for="datum">Datum</label>
           <input id="datum" name="datum" type="date" required />
         </div>
+      </div>
+
+      <fieldset class="missions-fieldset">
+        <legend>Missies <span class="legend-hint">(max. 3)</span></legend>
+        <p class="field-help" id="missions-help">Kies tot drie highlights die op het certificaat komen.</p>
+        <div class="missions-grid" id="missions-grid" role="group" aria-describedby="missions-help">
+          <label class="mission-option">
+            <input type="checkbox" name="missie" value="landing" />
+            <span class="mission-chip">Veilige landing</span>
+          </label>
+          <label class="mission-option">
+            <input type="checkbox" name="missie" value="precision" />
+            <span class="mission-chip">Precision jump</span>
+          </label>
+          <label class="mission-option">
+            <input type="checkbox" name="missie" value="vault" />
+            <span class="mission-chip">Eerste vault</span>
+          </label>
+          <label class="mission-option">
+            <input type="checkbox" name="missie" value="doorzetter" />
+            <span class="mission-chip">Doorzetter</span>
+          </label>
+          <label class="mission-option">
+            <input type="checkbox" name="missie" value="creatief" />
+            <span class="mission-chip">Creatieve move</span>
+          </label>
+          <label class="mission-option">
+            <input type="checkbox" name="missie" value="samen" />
+            <span class="mission-chip">Goede samenwerking</span>
+          </label>
+        </div>
+        <p class="missions-count" id="missions-count" aria-live="polite">0 / 3 geselecteerd</p>
+      </fieldset>
+
+      <div class="form-grid form-grid-coach">
         <div class="field">
-          <label>Handtekening</label>
-          <p class="field-note">Staat al op het originele ontwerp.</p>
+          <label for="coach">Coachnaam <span class="optional">(optioneel)</span></label>
+          <input id="coach" name="coach" type="text" placeholder="bijv. Coach Sam" maxlength="40" />
+        </div>
+        <div class="field field-message">
+          <label for="msg">Persoonlijke boodschap <span class="optional">(optioneel)</span></label>
+          <input id="msg" name="msg" type="text" placeholder="Korte aanmoediging…" maxlength="120" />
+          <div class="char-counter" id="msg-counter">0 / 120</div>
         </div>
       </div>
+
       <div class="actions">
-        <button type="submit" class="btn btn-primary">Genereer certificaat</button>
-        <button type="button" class="btn btn-secondary" id="btn-print">Print / PDF</button>
-        <button type="button" class="btn btn-ghost" id="btn-reset">Reset</button>
+        <button type="submit" class="btn btn-primary" id="btn-generate">Genereer certificaat</button>
+        <button type="button" class="btn btn-secondary" id="btn-print">Download / Print PDF</button>
+        <button type="button" class="btn btn-secondary" id="btn-sharecard">Download deelkaart</button>
+        <button type="button" class="btn btn-ghost" id="btn-reset">Opnieuw instellen</button>
       </div>
-      <p class="hint">Tip: bij printen “Opslaan als PDF”, A4, liggend, marges “Geen”, achtergrondgraphics aan.</p>
+      <p class="hint">Tip: bij printen kies “Opslaan als PDF”, A4 liggend, marges “Geen”, achtergrondgraphics aan.</p>
     </form>
 
     <div class="preview-label">Voorbeeld / preview</div>
@@ -45,31 +90,61 @@
     <article class="certificate" id="certificate" aria-label="Certificaat ZERO Freerunning">
       <img class="cert-bg" src="certificaat-bg.jpg" alt="" />
 
-      <!-- Naam + datum op de onderlijnen -->
-      <div class="overlay overlay-datum" id="out-datum"></div>
-      <div class="overlay overlay-naam" id="out-naam"></div>
+      <!-- Subtle energy overlays -->
+      <svg class="energy-overlay" viewBox="0 0 1000 700" aria-hidden="true" focusable="false">
+        <g opacity="0.12" stroke="#C02026" stroke-width="2" fill="none">
+          <path d="M720 90 L860 40" />
+          <path d="M740 120 L900 80" />
+          <path d="M760 150 L920 130" />
+        </g>
+        <g opacity="0.10" fill="#111">
+          <polygon points="820,200 845,215 820,230 795,215" />
+          <rect x="870" y="250" width="36" height="10" transform="rotate(-18 888 255)" />
+          <rect x="890" y="275" width="28" height="8" transform="rotate(-18 904 279)" />
+        </g>
+        <g opacity="0.08" stroke="#C02026" stroke-width="3" fill="none">
+          <path d="M60 480 C120 450, 160 520, 220 490" />
+          <path d="M80 520 C140 490, 180 560, 240 530" />
+        </g>
+      </svg>
 
-      <!-- Alleen over de website-regel (niet over de zin erboven) -->
-      <a class="overlay-starten"
-         href="https://www.zero-freerunning.nl/starten"
-         target="_blank"
-         rel="noopener noreferrer"
-         title="Start 30 dagen gratis bij ZERO Freerunning"
-         aria-label="Start 30 dagen gratis meedoen bij ZERO Freerunning">Start 30 dagen gratis →</a>
-      <!-- Promo: tutorials + activiteiten -->
-      <nav class="promo-links" aria-label="ZERO activiteiten">
-        <a href="https://www.zero-freerunning.nl/tutorials" target="_blank" rel="noopener noreferrer" title="Freerunning tutorials">Tutorials</a>
-        <span class="promo-sep" aria-hidden="true">·</span>
-        <a href="https://www.zero-freerunning.nl/kinderfeestjes" target="_blank" rel="noopener noreferrer" title="Kinderfeestjes">Kinderfeestjes</a>
-        <span class="promo-sep" aria-hidden="true">·</span>
-        <a href="https://www.zero-freerunning.nl/workshops" target="_blank" rel="noopener noreferrer" title="Workshops">Workshops</a>
-        <span class="promo-sep" aria-hidden="true">·</span>
-        <a href="https://www.zero-freerunning.nl/optredens" target="_blank" rel="noopener noreferrer" title="Optredens">Optredens</a>
-      </nav>
+      <div class="field-mask" aria-hidden="true"></div>
 
-      <!-- Socials linksonder -->
+      <!-- White content panel covering old body/footer print -->
+      <div class="content-panel">
+        <p class="cert-intro" id="out-intro">Dit certificaat is met trots uitgereikt aan</p>
+        <h2 class="cert-name" id="out-naam" aria-live="polite"></h2>
+        <p class="cert-reason" id="out-reason">omdat je tijdens de ZERO Open Dag lef, controle en creativiteit hebt laten zien.</p>
+
+        <div class="missions-row" id="out-missions" hidden></div>
+
+        <p class="cert-date" id="out-datum"></p>
+
+        <blockquote class="coach-quote" id="out-coach" hidden>
+          <p class="coach-message" id="out-msg"></p>
+          <footer class="coach-by" id="out-coach-by"></footer>
+        </blockquote>
+      </div>
+
+      <!-- Bottom CTA + QR -->
+      <div class="cta-block">
+        <div class="cta-copy">
+          <p class="cta-title">Jouw volgende missie: 30 dagen gratis meetrainen</p>
+          <a class="cta-link" id="cta-link"
+             href="https://www.zero-freerunning.nl/starten"
+             target="_blank" rel="noopener noreferrer">
+            Start nu op zero-freerunning.nl/starten →
+          </a>
+          <p class="cta-scan-hint">Scan samen met je ouder/verzorger</p>
+        </div>
+        <div class="qr-pad" aria-hidden="false">
+          <canvas id="qr-canvas" width="110" height="110" aria-label="QR-code naar zero-freerunning.nl/starten"></canvas>
+        </div>
+      </div>
+
+      <!-- Socials bottom-left under gold L -->
       <div class="social-block">
-        <p class="social-caption">Klik hier om ons te volgen</p>
+        <p class="social-caption">Volg ZERO</p>
         <div class="social-icons">
           <a class="social-icon" href="https://www.instagram.com/zerofreerunningnl/" target="_blank" rel="noopener noreferrer" aria-label="Instagram ZERO Freerunning" title="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm11.5 1.5a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5zM12 7a5 5 0 1 1 0 10a5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6a3 3 0 0 0 0-6z"/></svg>
@@ -88,86 +163,491 @@
     </article>
   </div>
 
+  <script src="vendor/qrcode.min.js"></script>
+
+  <!-- Offscreen canvas for share card -->
+  <canvas id="share-canvas" class="share-canvas no-print" width="1080" height="1920" aria-hidden="true"></canvas>
+
   <script>
     (function () {
-      const form = document.getElementById('cert-form');
-      const naamInput = document.getElementById('naam');
-      const datumInput = document.getElementById('datum');
-      const outNaam = document.getElementById('out-naam');
-      const outDatum = document.getElementById('out-datum');
+      'use strict';
 
-      const NL_MONTHS = [
+      var START_URL = 'https://www.zero-freerunning.nl/starten';
+      var MAX_MISSIONS = 3;
+      var MSG_MAX = 120;
+
+      var MISSIONS = {
+        landing:   { label: 'Veilige landing',     color: '#C02026' },
+        precision: { label: 'Precision jump',      color: '#111111' },
+        vault:     { label: 'Eerste vault',        color: '#C02026' },
+        doorzetter:{ label: 'Doorzetter',          color: '#111111' },
+        creatief:  { label: 'Creatieve move',      color: '#C02026' },
+        samen:     { label: 'Goede samenwerking',  color: '#111111' }
+      };
+
+      var form = document.getElementById('cert-form');
+      var naamInput = document.getElementById('naam');
+      var datumInput = document.getElementById('datum');
+      var coachInput = document.getElementById('coach');
+      var msgInput = document.getElementById('msg');
+      var msgCounter = document.getElementById('msg-counter');
+      var missionsCountEl = document.getElementById('missions-count');
+      var missionInputs = Array.prototype.slice.call(document.querySelectorAll('input[name="missie"]'));
+
+      var outNaam = document.getElementById('out-naam');
+      var outDatum = document.getElementById('out-datum');
+      var outMissions = document.getElementById('out-missions');
+      var outCoach = document.getElementById('out-coach');
+      var outMsg = document.getElementById('out-msg');
+      var outCoachBy = document.getElementById('out-coach-by');
+      var qrCanvas = document.getElementById('qr-canvas');
+      var shareCanvas = document.getElementById('share-canvas');
+
+      var NL_MONTHS = [
         'januari', 'februari', 'maart', 'april', 'mei', 'juni',
         'juli', 'augustus', 'september', 'oktober', 'november', 'december'
       ];
 
       function formatDutchDate(iso) {
         if (!iso) return '';
-        const parts = iso.split('-');
+        var parts = iso.split('-');
         if (parts.length !== 3) return iso;
-        const y = parseInt(parts[0], 10);
-        const m = parseInt(parts[1], 10);
-        const d = parseInt(parts[2], 10);
+        var y = parseInt(parts[0], 10);
+        var m = parseInt(parts[1], 10);
+        var d = parseInt(parts[2], 10);
         if (!y || !m || !d) return iso;
         return d + ' ' + NL_MONTHS[m - 1] + ' ' + y;
       }
 
       function todayISO() {
-        const now = new Date();
-        const y = now.getFullYear();
-        const m = String(now.getMonth() + 1).padStart(2, '0');
-        const d = String(now.getDate()).padStart(2, '0');
+        var now = new Date();
+        var y = now.getFullYear();
+        var m = String(now.getMonth() + 1).padStart(2, '0');
+        var d = String(now.getDate()).padStart(2, '0');
         return y + '-' + m + '-' + d;
       }
 
+      function sanitizeFilename(name) {
+        return String(name || '')
+          .trim()
+          .replace(/\s+/g, '-')
+          .replace(/[^a-zA-Z0-9\-_àáâãäåæçèéêëìíîïñòóôõöøùúûüýÿ]/g, '')
+          .replace(/-+/g, '-')
+          .replace(/^-|-$/g, '') || 'deelnemer';
+      }
+
+      function firstName(full) {
+        var t = String(full || '').trim();
+        if (!t) return '';
+        return t.split(/\s+/)[0];
+      }
+
+      function selectedMissions() {
+        return missionInputs.filter(function (el) { return el.checked; }).map(function (el) { return el.value; });
+      }
+
+      function updateMissionUI() {
+        var selected = selectedMissions();
+        var n = selected.length;
+        missionsCountEl.textContent = n + ' / ' + MAX_MISSIONS + ' geselecteerd';
+        missionInputs.forEach(function (el) {
+          var label = el.closest('.mission-option');
+          if (!el.checked && n >= MAX_MISSIONS) {
+            el.disabled = true;
+            if (label) label.classList.add('is-disabled');
+          } else {
+            el.disabled = false;
+            if (label) label.classList.remove('is-disabled');
+          }
+          if (label) label.classList.toggle('is-checked', el.checked);
+        });
+      }
+
+      function fitNameText() {
+        var el = outNaam;
+        var panel = el.parentElement;
+        if (!panel) return;
+        var maxPx = Math.min(56, Math.floor(panel.clientWidth * 0.11));
+        var minPx = 16;
+        el.style.fontSize = maxPx + 'px';
+        var size = maxPx;
+        // Measure against available width; allow wrap to 2 lines for very long names
+        el.style.whiteSpace = 'nowrap';
+        while ((el.scrollWidth > el.clientWidth || el.scrollHeight > el.clientHeight * 1.2) && size > minPx) {
+          size -= 1;
+          el.style.fontSize = size + 'px';
+          if (size < maxPx * 0.62) {
+            el.style.whiteSpace = 'normal';
+          }
+        }
+        if (el.scrollWidth > el.clientWidth && size <= minPx) {
+          el.style.whiteSpace = 'normal';
+        }
+      }
+
+      function badgeSVG(id) {
+        // Simple distinctive icons per mission
+        var paths = {
+          landing: '<path d="M12 3v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M6 14c2 3 4 4 6 4s4-1 6-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="20" r="1.5" fill="currentColor"/>',
+          precision: '<circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+          vault: '<path d="M4 18c4-8 8-10 16-12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="7" cy="17" r="2" fill="currentColor"/><rect x="15" y="5" width="5" height="5" rx="1" fill="currentColor"/>',
+          doorzetter: '<path d="M6 16l3-8 3 5 3-3 3 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
+          creatief: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill="currentColor"/><circle cx="18" cy="18" r="2" fill="currentColor"/>',
+          samen: '<circle cx="8" cy="10" r="3" fill="currentColor"/><circle cx="16" cy="10" r="3" fill="currentColor"/><path d="M3 19c1-3 3.5-4.5 5-4.5S12 16 13 19M11 19c1-3 3.5-4.5 5-4.5S19.5 16 21 19" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
+        };
+        return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (paths[id] || '') + '</svg>';
+      }
+
+      function renderMissions(ids) {
+        // Clear safely
+        while (outMissions.firstChild) outMissions.removeChild(outMissions.firstChild);
+        if (!ids.length) {
+          outMissions.hidden = true;
+          return;
+        }
+        outMissions.hidden = false;
+        ids.forEach(function (id) {
+          var meta = MISSIONS[id];
+          if (!meta) return;
+          var badge = document.createElement('div');
+          badge.className = 'mission-badge';
+          badge.style.setProperty('--badge-accent', meta.color);
+
+          var icon = document.createElement('span');
+          icon.className = 'mission-badge-icon';
+          icon.innerHTML = badgeSVG(id); // static trusted SVG only
+
+          var label = document.createElement('span');
+          label.className = 'mission-badge-label';
+          label.textContent = meta.label;
+
+          badge.appendChild(icon);
+          badge.appendChild(label);
+          outMissions.appendChild(badge);
+        });
+      }
+
+      function renderQR() {
+        if (typeof QRCode === 'undefined' || !QRCode.toCanvas) return;
+        // Size ~100–110 CSS px; high contrast, quiet zone via margin
+        QRCode.toCanvas(qrCanvas, START_URL, {
+          errorCorrectionLevel: 'M',
+          margin: 2,
+          width: 110,
+          color: { dark: '#111111', light: '#ffffff' }
+        }, function (err) {
+          if (err) console.error(err);
+        });
+      }
+
       function applyCertificate() {
-        const naam = (naamInput.value || '').trim();
-        outNaam.textContent = naam;
+        var naam = (naamInput.value || '').trim();
+        var coach = (coachInput.value || '').trim();
+        var msg = (msgInput.value || '').trim();
+        var missions = selectedMissions();
+
+        outNaam.textContent = naam || 'Jouw naam';
+        outNaam.classList.toggle('is-placeholder', !naam);
         outDatum.textContent = formatDutchDate(datumInput.value);
+
+        renderMissions(missions);
+
+        if (msg || coach) {
+          outCoach.hidden = false;
+          outMsg.textContent = msg ? ('“' + msg + '”') : '';
+          outMsg.hidden = !msg;
+          if (coach) {
+            outCoachBy.textContent = '— Coach ' + coach;
+            outCoachBy.hidden = false;
+          } else {
+            outCoachBy.textContent = '';
+            outCoachBy.hidden = true;
+          }
+        } else {
+          outCoach.hidden = true;
+          outMsg.textContent = '';
+          outCoachBy.textContent = '';
+        }
+
+        msgCounter.textContent = (msgInput.value || '').length + ' / ' + MSG_MAX;
+
+        if (naam) {
+          document.title = 'ZERO-certificaat-' + sanitizeFilename(naam);
+        } else {
+          document.title = 'ZERO Freerunning — Certificaatgenerator';
+        }
+
+        // Fit after layout
+        requestAnimationFrame(function () {
+          fitNameText();
+        });
       }
 
       function syncUrl() {
-        const params = new URLSearchParams();
-        const naam = (naamInput.value || '').trim();
-        const datum = (datumInput.value || '').trim();
+        var params = new URLSearchParams();
+        var naam = (naamInput.value || '').trim();
+        var datum = (datumInput.value || '').trim();
+        var coach = (coachInput.value || '').trim();
+        var msg = (msgInput.value || '').trim();
+        var missions = selectedMissions();
         if (naam) params.set('naam', naam);
         if (datum) params.set('datum', datum);
-        const qs = params.toString();
-        const next = qs ? (window.location.pathname + '?' + qs) : window.location.pathname;
+        if (coach) params.set('coach', coach);
+        if (msg) params.set('msg', msg);
+        if (missions.length) params.set('missies', missions.join(','));
+        var qs = params.toString();
+        var next = qs ? (window.location.pathname + '?' + qs) : window.location.pathname;
         window.history.replaceState(null, '', next);
       }
 
       function refresh() {
+        updateMissionUI();
         applyCertificate();
         syncUrl();
       }
 
+      function parseUrl() {
+        var params = new URLSearchParams(window.location.search);
+        if (params.has('naam')) naamInput.value = params.get('naam') || '';
+        if (params.has('datum')) datumInput.value = params.get('datum') || '';
+        if (params.has('coach')) coachInput.value = params.get('coach') || '';
+        var msg = params.get('msg') || params.get('boodschap');
+        if (msg != null) msgInput.value = String(msg).slice(0, MSG_MAX);
+        var missies = params.get('missies');
+        if (missies) {
+          var wanted = missies.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+          var count = 0;
+          missionInputs.forEach(function (el) {
+            var on = wanted.indexOf(el.value) !== -1 && count < MAX_MISSIONS;
+            el.checked = on;
+            if (on) count++;
+          });
+        }
+      }
+
+      function drawShareCard() {
+        var ctx = shareCanvas.getContext('2d');
+        var W = 1080, H = 1920;
+        var naam = (naamInput.value || '').trim();
+        var voornaam = firstName(naam) || 'ZERO';
+        var missions = selectedMissions();
+
+        // Background
+        ctx.fillStyle = '#111111';
+        ctx.fillRect(0, 0, W, H);
+
+        // Red diagonal swoosh
+        ctx.fillStyle = '#C02026';
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(W * 0.72, 0);
+        ctx.lineTo(0, H * 0.38);
+        ctx.closePath();
+        ctx.fill();
+
+        // Gold accent bar
+        ctx.fillStyle = '#D4AF37';
+        ctx.fillRect(0, H * 0.36, W, 8);
+
+        // Motion lines
+        ctx.strokeStyle = 'rgba(255,255,255,0.18)';
+        ctx.lineWidth = 4;
+        for (var i = 0; i < 5; i++) {
+          ctx.beginPath();
+          ctx.moveTo(W * 0.55 + i * 40, H * 0.12);
+          ctx.lineTo(W * 0.92 + i * 20, H * 0.04 + i * 18);
+          ctx.stroke();
+        }
+
+        // Geometric obstacle shapes
+        ctx.fillStyle = 'rgba(212,175,55,0.35)';
+        ctx.beginPath();
+        ctx.moveTo(W * 0.78, H * 0.22);
+        ctx.lineTo(W * 0.92, H * 0.26);
+        ctx.lineTo(W * 0.78, H * 0.30);
+        ctx.closePath();
+        ctx.fill();
+
+        ctx.fillStyle = 'rgba(255,255,255,0.12)';
+        ctx.fillRect(W * 0.82, H * 0.32, 90, 22);
+
+        // Brand
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 42px Montserrat, system-ui, sans-serif';
+        ctx.fillText('ZERO FREERUNNING', 72, 120);
+
+        ctx.fillStyle = '#D4AF37';
+        ctx.font = '700 28px Montserrat, system-ui, sans-serif';
+        ctx.fillText('OPEN DAG', 72, 170);
+
+        // First name hero
+        ctx.fillStyle = '#ffffff';
+        var nameSize = 120;
+        ctx.font = '900 ' + nameSize + 'px Montserrat, system-ui, sans-serif';
+        while (ctx.measureText(voornaam).width > W - 140 && nameSize > 48) {
+          nameSize -= 4;
+          ctx.font = '900 ' + nameSize + 'px Montserrat, system-ui, sans-serif';
+        }
+        ctx.fillText(voornaam, 72, 520);
+
+        // Tagline
+        ctx.fillStyle = 'rgba(255,255,255,0.92)';
+        ctx.font = '600 40px Montserrat, system-ui, sans-serif';
+        wrapText(ctx, 'Ik deed mee aan de ZERO Open Dag', 72, 620, W - 144, 52);
+
+        // Mission badges
+        var y = 780;
+        if (missions.length) {
+          ctx.font = '700 26px Montserrat, system-ui, sans-serif';
+          ctx.fillStyle = '#D4AF37';
+          ctx.fillText('MISSIES', 72, y);
+          y += 40;
+          missions.forEach(function (id) {
+            var meta = MISSIONS[id];
+            if (!meta) return;
+            // pill
+            var label = meta.label;
+            ctx.font = '700 32px Montserrat, system-ui, sans-serif';
+            var tw = ctx.measureText(label).width;
+            var pw = tw + 56;
+            var ph = 64;
+            roundRect(ctx, 72, y, pw, ph, 32);
+            ctx.fillStyle = '#ffffff';
+            ctx.fill();
+            ctx.fillStyle = '#C02026';
+            ctx.fillText(label, 72 + 28, y + 42);
+            y += ph + 20;
+          });
+        }
+
+        // Bottom CTA band
+        ctx.fillStyle = '#C02026';
+        ctx.fillRect(0, H - 280, W, 280);
+        ctx.fillStyle = '#ffffff';
+        ctx.font = '800 36px Montserrat, system-ui, sans-serif';
+        ctx.fillText('Jouw volgende missie', 72, H - 170);
+        ctx.font = '600 30px Montserrat, system-ui, sans-serif';
+        ctx.fillText('zero-freerunning.nl/starten', 72, H - 110);
+        ctx.fillStyle = '#D4AF37';
+        ctx.fillRect(72, H - 80, 160, 6);
+      }
+
+      function wrapText(ctx, text, x, y, maxWidth, lineHeight) {
+        var words = text.split(' ');
+        var line = '';
+        for (var n = 0; n < words.length; n++) {
+          var test = line + words[n] + ' ';
+          if (ctx.measureText(test).width > maxWidth && n > 0) {
+            ctx.fillText(line, x, y);
+            line = words[n] + ' ';
+            y += lineHeight;
+          } else {
+            line = test;
+          }
+        }
+        ctx.fillText(line, x, y);
+        return y;
+      }
+
+      function roundRect(ctx, x, y, w, h, r) {
+        ctx.beginPath();
+        ctx.moveTo(x + r, y);
+        ctx.arcTo(x + w, y, x + w, y + h, r);
+        ctx.arcTo(x + w, y + h, x, y + h, r);
+        ctx.arcTo(x, y + h, x, y, r);
+        ctx.arcTo(x, y, x + w, y, r);
+        ctx.closePath();
+      }
+
+      function downloadShareCard() {
+        applyCertificate();
+        drawShareCard();
+        var voornaam = firstName((naamInput.value || '').trim()) || 'deelnemer';
+        var filename = 'ZERO-open-dag-' + sanitizeFilename(voornaam) + '.png';
+        shareCanvas.toBlob(function (blob) {
+          if (!blob) return;
+          var url = URL.createObjectURL(blob);
+          var a = document.createElement('a');
+          a.href = url;
+          a.download = filename;
+          document.body.appendChild(a);
+          a.click();
+          a.remove();
+          setTimeout(function () { URL.revokeObjectURL(url); }, 1500);
+        }, 'image/png');
+      }
+
+      // Events
       datumInput.value = todayISO();
+      parseUrl();
+      if (!datumInput.value) datumInput.value = todayISO();
+
       naamInput.addEventListener('input', refresh);
       datumInput.addEventListener('input', refresh);
+      coachInput.addEventListener('input', refresh);
+      msgInput.addEventListener('input', function () {
+        if (msgInput.value.length > MSG_MAX) {
+          msgInput.value = msgInput.value.slice(0, MSG_MAX);
+        }
+        refresh();
+      });
+
+      missionInputs.forEach(function (el) {
+        el.addEventListener('change', function (e) {
+          if (el.checked && selectedMissions().length > MAX_MISSIONS) {
+            el.checked = false;
+          }
+          refresh();
+        });
+      });
 
       form.addEventListener('submit', function (e) {
         e.preventDefault();
         refresh();
+        renderQR();
         document.getElementById('certificate').scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
 
       document.getElementById('btn-print').addEventListener('click', function () {
         refresh();
-        window.print();
+        renderQR();
+        setTimeout(function () { window.print(); }, 80);
+      });
+
+      document.getElementById('btn-sharecard').addEventListener('click', function () {
+        downloadShareCard();
       });
 
       document.getElementById('btn-reset').addEventListener('click', function () {
         naamInput.value = '';
         datumInput.value = todayISO();
+        coachInput.value = '';
+        msgInput.value = '';
+        missionInputs.forEach(function (el) { el.checked = false; el.disabled = false; });
         refresh();
+        renderQR();
         naamInput.focus();
       });
 
-      const params = new URLSearchParams(window.location.search);
-      if (params.has('naam')) naamInput.value = params.get('naam');
-      if (params.has('datum')) datumInput.value = params.get('datum');
-      refresh();
+      window.addEventListener('resize', function () {
+        fitNameText();
+      });
+
+      // Init
+      function boot() {
+        refresh();
+        renderQR();
+      }
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', boot);
+      } else {
+        // QR lib is deferred — wait a tick
+        setTimeout(boot, 0);
+      }
+      window.addEventListener('load', function () {
+        renderQR();
+        fitNameText();
+      });
     })();
   </script>
 </body>
