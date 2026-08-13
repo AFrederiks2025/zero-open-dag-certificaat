@@ -13,8 +13,8 @@
   <div class="no-print">
     <header class="ui-header">
       <div>
-        <h1>ZERO Freerunning — Open Dag Certificaat</h1>
-        <p>Maak een persoonlijk certificaat en deelkaart voor de ZERO Open Dag.</p>
+        <h1>ZERO Freerunning — Certificaat</h1>
+        <p>Maak een persoonlijk certificaat en deelkaart voor ZERO Freerunning.</p>
       </div>
     </header>
 
@@ -94,7 +94,7 @@
       <div class="content-panel">
         <p class="cert-intro" id="out-intro">Dit certificaat is met trots uitgereikt aan</p>
         <h2 class="cert-name" id="out-naam" aria-live="polite"></h2>
-        <p class="cert-reason" id="out-reason">omdat je tijdens de ZERO Open Dag lef, controle en creativiteit hebt laten zien.</p>
+        <p class="cert-reason" id="out-reason">omdat je lef, controle en creativiteit hebt laten zien bij ZERO Freerunning.</p>
 
         <div class="missions-row" id="out-missions" hidden></div>
 
@@ -449,7 +449,7 @@
 
         ctx.fillStyle = '#D4AF37';
         ctx.font = '700 28px Montserrat, system-ui, sans-serif';
-        ctx.fillText('OPEN DAG', 72, 170);
+        ctx.fillText('FREERUNNING', 72, 170);
 
         // First name hero
         ctx.fillStyle = '#ffffff';
@@ -464,7 +464,7 @@
         // Tagline
         ctx.fillStyle = 'rgba(255,255,255,0.92)';
         ctx.font = '600 40px Montserrat, system-ui, sans-serif';
-        wrapText(ctx, 'Ik deed mee aan de ZERO Open Dag', 72, 620, W - 144, 52);
+        wrapText(ctx, 'Ik train bij ZERO Freerunning', 72, 620, W - 144, 52);
 
         // Mission badges
         var y = 780;
@@ -534,7 +534,7 @@
         applyCertificate();
         drawShareCard();
         var voornaam = firstName((naamInput.value || '').trim()) || 'deelnemer';
-        var filename = 'ZERO-open-dag-' + sanitizeFilename(voornaam) + '.png';
+        var filename = 'ZERO-certificaat-' + sanitizeFilename(voornaam) + '.png';
         shareCanvas.toBlob(function (blob) {
           if (!blob) return;
           var url = URL.createObjectURL(blob);
