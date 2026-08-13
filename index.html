@@ -31,35 +31,35 @@
       </div>
 
       <fieldset class="missions-fieldset">
-        <legend>Missies <span class="legend-hint">(max. 3)</span></legend>
-        <p class="field-help" id="missions-help">Kies tot drie highlights die op het certificaat komen.</p>
+        <legend>Skills</legend>
+        <p class="field-help" id="missions-help">Standaard alle 6. Haal eraf wat niet is gedaan.</p>
         <div class="missions-grid" id="missions-grid" role="group" aria-describedby="missions-help">
           <label class="mission-option">
-            <input type="checkbox" name="missie" value="landing" />
-            <span class="mission-chip">Veilige landing</span>
+            <input type="checkbox" name="missie" value="precision" checked />
+            <span class="mission-chip">Precision Jump</span>
           </label>
           <label class="mission-option">
-            <input type="checkbox" name="missie" value="precision" />
-            <span class="mission-chip">Precision jump</span>
+            <input type="checkbox" name="missie" value="safetyvault" checked />
+            <span class="mission-chip">Safety Vault</span>
           </label>
           <label class="mission-option">
-            <input type="checkbox" name="missie" value="vault" />
-            <span class="mission-chip">Eerste vault</span>
+            <input type="checkbox" name="missie" value="wallrun" checked />
+            <span class="mission-chip">Wallrun</span>
           </label>
           <label class="mission-option">
-            <input type="checkbox" name="missie" value="doorzetter" />
-            <span class="mission-chip">Doorzetter</span>
+            <input type="checkbox" name="missie" value="parkourroll" checked />
+            <span class="mission-chip">Parkour roll</span>
           </label>
           <label class="mission-option">
-            <input type="checkbox" name="missie" value="creatief" />
-            <span class="mission-chip">Creatieve move</span>
+            <input type="checkbox" name="missie" value="palmspin" checked />
+            <span class="mission-chip">Palm Spin</span>
           </label>
           <label class="mission-option">
-            <input type="checkbox" name="missie" value="samen" />
-            <span class="mission-chip">Goede samenwerking</span>
+            <input type="checkbox" name="missie" value="droplanding" checked />
+            <span class="mission-chip">Droplanding</span>
           </label>
         </div>
-        <p class="missions-count" id="missions-count" aria-live="polite">0 / 3 geselecteerd</p>
+        <p class="missions-count" id="missions-count" aria-live="polite">6 / 6 geselecteerd</p>
       </fieldset>
 
       <div class="form-grid form-grid-coach">
@@ -148,17 +148,19 @@
       'use strict';
 
       var START_URL = 'https://www.zero-freerunning.nl/starten';
-      var MAX_MISSIONS = 3;
+      var MAX_MISSIONS = 6;
       var MSG_MAX = 120;
 
       var MISSIONS = {
-        landing:   { label: 'Veilige landing',     color: '#C02026' },
-        precision: { label: 'Precision jump',      color: '#111111' },
-        vault:     { label: 'Eerste vault',        color: '#C02026' },
-        doorzetter:{ label: 'Doorzetter',          color: '#111111' },
-        creatief:  { label: 'Creatieve move',      color: '#C02026' },
-        samen:     { label: 'Goede samenwerking',  color: '#111111' }
+        precision:    { label: 'Precision Jump', color: '#C02026' },
+        safetyvault:  { label: 'Safety Vault',   color: '#111111' },
+        wallrun:      { label: 'Wallrun',        color: '#C02026' },
+        parkourroll:  { label: 'Parkour roll',   color: '#111111' },
+        palmspin:     { label: 'Palm Spin',      color: '#C02026' },
+        droplanding:  { label: 'Droplanding',    color: '#111111' }
       };
+
+      var DEFAULT_MISSIONS = ['precision', 'safetyvault', 'wallrun', 'parkourroll', 'palmspin', 'droplanding'];
 
       var form = document.getElementById('cert-form');
       var naamInput = document.getElementById('naam');
@@ -270,12 +272,12 @@
       function badgeSVG(id) {
         // Simple distinctive icons per mission
         var paths = {
-          landing: '<path d="M12 3v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M6 14c2 3 4 4 6 4s4-1 6-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="20" r="1.5" fill="currentColor"/>',
           precision: '<circle cx="12" cy="12" r="7" stroke="currentColor" stroke-width="2" fill="none"/><circle cx="12" cy="12" r="2" fill="currentColor"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
-          vault: '<path d="M4 18c4-8 8-10 16-12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="7" cy="17" r="2" fill="currentColor"/><rect x="15" y="5" width="5" height="5" rx="1" fill="currentColor"/>',
-          doorzetter: '<path d="M6 16l3-8 3 5 3-3 3 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="M5 19h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>',
-          creatief: '<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3z" fill="currentColor"/><circle cx="18" cy="18" r="2" fill="currentColor"/>',
-          samen: '<circle cx="8" cy="10" r="3" fill="currentColor"/><circle cx="16" cy="10" r="3" fill="currentColor"/><path d="M3 19c1-3 3.5-4.5 5-4.5S12 16 13 19M11 19c1-3 3.5-4.5 5-4.5S19.5 16 21 19" stroke="currentColor" stroke-width="1.8" fill="none" stroke-linecap="round"/>'
+          safetyvault: '<path d="M4 18c4-8 8-10 16-12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="7" cy="17" r="2" fill="currentColor"/><rect x="15" y="5" width="5" height="5" rx="1" fill="currentColor"/>',
+          wallrun: '<path d="M5 21V5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><path d="M7 18c2-4 5-8 12-12" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="19" cy="6" r="2" fill="currentColor"/>',
+          parkourroll: '<path d="M12 4a8 8 0 1 1-7.5 5.3" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M4.5 9.3l-2-3.2 3.8.4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+          palmspin: '<circle cx="12" cy="12" r="2.2" fill="currentColor"/><path d="M12 5a7 7 0 0 1 7 7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M12 19a7 7 0 0 1-7-7" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M17.5 7.2l1.8 3.2-3.6.2" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>',
+          droplanding: '<path d="M12 3v10" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M6 14c2 3 4 4 6 4s4-1 6-4" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round"/><circle cx="12" cy="20" r="1.5" fill="currentColor"/>'
         };
         return '<svg viewBox="0 0 24 24" aria-hidden="true">' + (paths[id] || '') + '</svg>';
       }
@@ -383,7 +385,7 @@
         var msg = params.get('msg') || params.get('boodschap');
         if (msg != null) msgInput.value = String(msg).slice(0, MSG_MAX);
         var missies = params.get('missies');
-        if (missies) {
+        if (missies !== null) {
           var wanted = missies.split(',').map(function (s) { return s.trim(); }).filter(Boolean);
           var count = 0;
           missionInputs.forEach(function (el) {
@@ -469,23 +471,23 @@
         if (missions.length) {
           ctx.font = '700 26px Montserrat, system-ui, sans-serif';
           ctx.fillStyle = '#D4AF37';
-          ctx.fillText('MISSIES', 72, y);
+          ctx.fillText('SKILLS', 72, y);
           y += 40;
           missions.forEach(function (id) {
             var meta = MISSIONS[id];
             if (!meta) return;
             // pill
             var label = meta.label;
-            ctx.font = '700 32px Montserrat, system-ui, sans-serif';
+            ctx.font = '700 28px Montserrat, system-ui, sans-serif';
             var tw = ctx.measureText(label).width;
             var pw = tw + 56;
-            var ph = 64;
-            roundRect(ctx, 72, y, pw, ph, 32);
+            var ph = 52;
+            roundRect(ctx, 72, y, pw, ph, 26);
             ctx.fillStyle = '#ffffff';
             ctx.fill();
             ctx.fillStyle = '#C02026';
-            ctx.fillText(label, 72 + 28, y + 42);
-            y += ph + 20;
+            ctx.fillText(label, 72 + 28, y + 34);
+            y += ph + 14;
           });
         }
 
@@ -590,7 +592,10 @@
         datumInput.value = todayISO();
         coachInput.value = '';
         msgInput.value = '';
-        missionInputs.forEach(function (el) { el.checked = false; el.disabled = false; });
+        missionInputs.forEach(function (el) {
+          el.checked = DEFAULT_MISSIONS.indexOf(el.value) !== -1;
+          el.disabled = false;
+        });
         refresh();
                 naamInput.focus();
       });
