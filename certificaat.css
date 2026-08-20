@@ -710,3 +710,34 @@ body.alleen-certificaat .stage { padding-top: 8px; }
 @media print {
   .alleen-certificaat-balk { display: none !important; }
 }
+
+
+/* Eén pagina bij printen. Het certificaat is exact 297x210mm; alles wat daar
+   ook maar een millimeter overheen steekt levert een lege tweede pagina op. */
+@media print {
+  html, body {
+    height: auto !important;
+    overflow: hidden !important;
+  }
+
+  body > *:not(.stage) { display: none !important; }
+
+  .stage {
+    display: block !important;
+    height: auto !important;
+    overflow: hidden !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .certificate {
+    display: block !important;
+    margin: 0 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .certificate ~ * { display: none !important; }
+}
