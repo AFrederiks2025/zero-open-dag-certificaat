@@ -680,3 +680,33 @@ html, body {
   .cta-link { color: var(--red) !important; }
   .social-icon { color: var(--red) !important; }
 }
+
+
+/* Weergavemodus: alleen het certificaat, zonder invulgedeelte.
+   Wordt aangezet met ?weergave=certificaat vanuit de bedankmail. */
+.alleen-certificaat-balk { display: none; }
+
+body.alleen-certificaat .no-print { display: none !important; }
+
+body.alleen-certificaat .alleen-certificaat-balk {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px 16px 8px;
+}
+
+body.alleen-certificaat .alleen-certificaat-balk p {
+  margin: 0;
+  font-weight: 800;
+  font-size: 15px;
+}
+
+body.alleen-certificaat .stage { padding-top: 8px; }
+
+@media print {
+  .alleen-certificaat-balk { display: none !important; }
+}

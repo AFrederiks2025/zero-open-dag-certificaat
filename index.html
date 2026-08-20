@@ -86,6 +86,10 @@
     <div class="preview-label">Voorbeeld / preview</div>
   </div>
 
+  <div class="alleen-certificaat-balk">
+    <p>Je certificaat van ZERO Freerunning</p>
+    <button type="button" id="btn-download-view" class="btn btn-primary">Download / Print PDF</button>
+  </div>
   <div class="stage">
     <article class="certificate" id="certificate" aria-label="Certificaat ZERO Freerunning">
       <img class="cert-bg" src="certificaat-bg.jpg" alt="" />
@@ -551,6 +555,15 @@
       // Events
       datumInput.value = todayISO();
       parseUrl();
+      var btnDownloadView = document.getElementById('btn-download-view');
+      if (btnDownloadView) btnDownloadView.addEventListener('click', function () { window.print(); });
+
+      // Komt de bezoeker uit de bedankmail, dan is dit geen gereedschap maar
+      // een certificaat: het invulgedeelte gaat weg en er blijft alleen het
+      // certificaat met een downloadknop over.
+      if (new URLSearchParams(window.location.search).get('weergave') === 'certificaat') {
+        document.body.classList.add('alleen-certificaat');
+      }
       if (!datumInput.value) datumInput.value = todayISO();
 
       naamInput.addEventListener('input', refresh);
