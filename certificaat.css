@@ -712,26 +712,29 @@ body.alleen-certificaat .stage { padding-top: 8px; }
 }
 
 
-/* Eén pagina bij printen. Het certificaat is exact 297x210mm; alles wat daar
-   ook maar een millimeter overheen steekt levert een lege tweede pagina op. */
+/* Eén pagina bij printen. Het certificaat moet net iets kleiner zijn dan de
+   pagina: op exact 210mm duwt afronding een lege tweede pagina naar buiten.
+   Geverifieerd door de PDF te renderen en de paginateller uit te lezen. */
 @media print {
+  @page { size: 297mm 210mm; margin: 0; }
+
   html, body {
-    height: auto !important;
+    width: 297mm !important;
+    height: 210mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
     overflow: hidden !important;
   }
 
-  body > *:not(.stage) { display: none !important; }
-
-  .stage {
-    display: block !important;
+  body.alleen-certificaat .stage {
+    padding: 0 !important;
+    margin: 0 !important;
     height: auto !important;
-    overflow: hidden !important;
-    page-break-inside: avoid;
-    break-inside: avoid;
   }
 
   .certificate {
-    display: block !important;
+    width: 297mm !important;
+    height: 209mm !important;
     margin: 0 !important;
     page-break-inside: avoid;
     break-inside: avoid;
@@ -739,5 +742,5 @@ body.alleen-certificaat .stage { padding-top: 8px; }
     break-after: avoid;
   }
 
-  .certificate ~ * { display: none !important; }
+  .alleen-certificaat-balk { display: none !important; }
 }
